@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Utilisateur; // Importez le modèle approprié
-
+use Illuminate\Support\Facades\Hash;
 class InscriptionController extends Controller
 {
     public function register()
@@ -13,7 +13,7 @@ class InscriptionController extends Controller
     }
 
     // Gestion de l'inscription
-    public function store(Request $request)
+    public function inscription_post(Request $request)
     {
         // Validation des données
         $request->validate([
@@ -25,19 +25,19 @@ class InscriptionController extends Controller
 
         // Création d'un nouvel utilisateur
         $utilisateur = new Utilisateur();
-        $utilisateur->nom = $request->input('nom');
-        $utilisateur->prenom = $request->input('prenom');
-        $utilisateur->email = $request->input('email');
-        $utilisateur->password = bcrypt($request->input('password'));
+        $utilisateur->nom = $request->nom;
+        $utilisateur->prenom = $request->prenom;
+        $utilisateur->email = $request->email;
+        $utilisateur->password = Hash::make($request->password);
 
         // Sauvegarde de l'utilisateur dans la base de données
         $utilisateur->save();
-
+        return redirect('categories')->with('status','Votre inscription a bien été pris en compte');
         // Redirection avec un message de succès
         // return redirect('/Gestion')->with('success', 'Inscription réussie !');
     }
 
-    public function show(){
-      return view('categories');
+
+
     }
-}
+

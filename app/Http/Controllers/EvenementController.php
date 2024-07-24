@@ -29,7 +29,7 @@ class EvenementController extends Controller
             'date' => 'required',
             'lieu' => 'required',
             'heure' => 'required',
-            'image' => '',
+            'image' => 'required',
         ]);
 
         $evenement = new Evenement();
@@ -49,10 +49,9 @@ class EvenementController extends Controller
             $evenement->image = '';
         }
 
-        dd($evenement);
 
         // Ajoutez dd pour afficher le contenu de la variable $evenement
-        // dd($evenement);
+        //  dd($evenement);
 
         $evenement->save();
 

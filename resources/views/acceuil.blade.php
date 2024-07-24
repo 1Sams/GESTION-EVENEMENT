@@ -66,7 +66,7 @@
                         <label><input type="checkbox">Se souvenir de moi</label>
                         <a href="#">Mot de passe oublié?</a>
                     </div>
-                    <button type="submit" name="ok" class="btn btn-success">S connecter</button>
+                    <button type="submit" name="ok" class="btn btn-success">Se connecter</button>
                     @if ($errors->any())
                     <div class="alert alert-danger mt-3">
                         <ul>
@@ -98,7 +98,7 @@
             <div class="form-box register">
 
 
-                <form method="POST" action="{{ route('inscription.store') }}">
+                <form method="POST" action="{{ route('inscription') }}">
                     @csrf
                     <h2>S'inscrire</h2>
                     <div class="input-box">

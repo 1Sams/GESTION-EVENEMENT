@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AcceuilController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -28,11 +29,13 @@ Route::get('/Gestion', function () {
 });
 
 
-Route::get('inscription', [InscriptionController::class, 'register'])->name('inscription');
-Route::post('store', [InscriptionController::class, 'store'])->name('inscription.store'); // Utilisez une méthode "store" pour gérer la soumission du formulaire
+Route::get('/inscription', [InscriptionController::class, 'register'])->name('inscription');
+Route::post('/inscription', [InscriptionController::class, 'inscription_post'])->name('inscription'); // Utilisez une méthode "store" pour gérer la soumission du formulaire
 
-Route::get('login', [LoginController::class, 'login'])->name('auth.login');
-Route::post('login', [LoginController::class, 'dologin'])->name('auth.login');
+
+Route::get('/login', [LoginController::class, 'login'])->name('auth.login');
+Route::post('/login', [LoginController::class, 'dologin'])->name('auth.login');
+
 Route::get('categories', [CategoriesController::class, 'categories']);
 
 Route::get('/delete-evenement/{id}', [EvenementController::class,'delete_evenement']);
