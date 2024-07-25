@@ -74,7 +74,7 @@ class EvenementController extends Controller
             'date' => 'required',
             'lieu' => 'required',
             'heure' => 'required',
-            'image' => '',
+            'image' => 'required',
         ]);
         $evenement = Evenement::find($request->id);
         $evenement->nom = $request->input('nom');
@@ -82,6 +82,16 @@ class EvenementController extends Controller
         $evenement->date = $request->input('date');
         $evenement->lieu = $request->input('lieu');
         $evenement->heure = $request->input('heure');
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/evenements/', $filename);
+            $evenement->image = $filename;
+        } else {
+            $evenement->image = '';
+        }
 
 
         $evenement->update();
