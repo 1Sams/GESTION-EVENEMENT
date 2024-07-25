@@ -96,6 +96,12 @@ class EvenementController extends Controller
         $evenement->delete();
         return redirect('/evenement')->with('status', 'L\'évenement à bien été supprimé avec succces.');
     }
+
+    public function affiche()
+{
+    $evenements = Evenement::all();
+    return view('evenement/evenement', compact('evenements'));
+}
 }
 
         // Validate the request data

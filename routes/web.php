@@ -44,6 +44,7 @@ Route::post('/update', [EvenementController::class,'update_evenement_taitement']
 Route::get('/evenement', [EvenementController::class,'liste_evenement']);
 Route::get('/ajout', [EvenementController::class,'ajout_evenement']);
 Route::post('/ajout', [EvenementController::class,'ajout_evenement_taitement']);
+Route::get('/events', [EvenementController::class, 'affiche']);
 
 
 

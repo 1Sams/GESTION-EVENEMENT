@@ -4,88 +4,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/categories.css') }}">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Catégories d'Événements</title>
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 12.5%;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
 
-    <title>Document</title>
+        .header {
+            background-color: #333;
+        }
+
+        .navbar-nav .nav-link {
+            color: #333;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #007bff;
+        }
+
+        .navbar-brand:hover {
+            color: #0056b3;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ddd;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-title {
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+        }
+
+        .content {
+            margin-top: 160px;
+            text-align: center;
+        }
+
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .btn-back {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 110;
+            background-color: #007bff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
-<body class="row">
+<body>
     <header class="header">
-        <nav class="navbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="school.php">Accueil</a>
 
-            <a href="school.php">Accueil</a>
-            <a href="evenement.php">Evénements</a>
-            <a href="A_propos .php">A propos</a>
-            <a href="Nous_contacter.html">Contact</a>
+                <a class="nav-link" href="evenement.php">Événements</a>
 
+                <a class="nav-link" href="A_propos.php">À propos</a>
 
+                <a class="nav-link" href="Nous_contacter.html">Contact</a>
+            </div>
         </nav>
     </header>
 
+    <button class="btn btn-back" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i>
+    </button>
 
-    <h1>VOS CATEGORIES D'EVENEMENTS POUR CE MOIS</h1>
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
+    <div class="container content">
+        <h1 class="text-center mb-4">VOS CATÉGORIES D'ÉVÉNEMENTS POUR CE MOIS</h1>
 
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
 
-    <div class="carre">
-        <div class="details">
-            <div class="titre">SPORT</div>
-            <p>
-                Ce mois-ci,plongez dans le vive de l'action <br>
-                avec une série passionnante d'évènemnts sportifs qui captiveront <br>
-                votre esprit compétitif et votre passion pour le sport.
-                <br>
-                <a href="evenement.php">voir les évènements associés</a>
-            </p>
-        </div>
-        <div class="image">
-            <img src="{{ asset('image/concept-equipement-sport_1284-13034.jpg') }}" alt="Sport">
+        <div class="row justify-content-center">
+            <!-- Sport Category -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="{{ asset('image/concept-equipement-sport_1284-13034.jpg') }}" class="card-img"
+                            alt="Sport">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">SPORT</h5>
+                        <p class="card-text">
+                            Ce mois-ci, plongez dans le vif de l'action avec une série passionnante d'évènements
+                            sportifs qui captiveront votre esprit compétitif et votre passion pour le sport.
+                        </p>
+                        <a href="{{ url('/events') }}" class="btn btn-primary">Voir les évènements associés</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Distraction Category -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="{{ asset('image/jeux-4.jpg') }}" class="card-img" alt="Distraction">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">DISTRACTION</h5>
+                        <p class="card-text">
+                            Préparez-vous à une explosion de divertissement ce mois-ci avec une gamme éclectique
+                            d'évènements qui promettent de captiver et divertir. Des spectacles en direct aux festivals
+                            vibrants, notre calendrier d'évènements de distraction offre une variété de choix pour tous
+                            les goûts et tous les âges.
+                        </p>
+                        <a href="{{ url('/events') }}" class="btn btn-primary">Voir les évènements associés</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Category -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="{{ asset('image/Difference-Between-School-and-Education_Education.jpg') }}"
+                            class="card-img" alt="Education">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">ÉDUCATION</h5>
+                        <p class="card-text">
+                            Explorez les opportunités éducatives passionnantes qui enrichissent notre communauté ce
+                            mois-ci. Des conférences inspirantes aux ateliers interactifs, notre calendrier d'évènements
+                            éducatifs propose une multitude d'occasions pour apprendre, partager et grandir ensemble.
+                        </p>
+                        <a href="{{ url('/events') }}" class="btn btn-primary">Voir les évènements associés</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="carre1">
-        <div class="details">
-            <div class="titre">DISTRACTION</div>
-            <p>
-                Préparez-vous à une explosion de divertissement ce mois-ci avec une gamme éclectique d'évènements <br>
-                qui promettent de captiver et divertir. des spectacles en direct aux festivals vibrants, notre
-                calendrier d'évènement <br>
-                de distraction offre une variété de choix pour tous les goûts et tous les âges. <br>
-
-                <a href="evenement.php">voir les évènements associés</a>
-            </p>
-        </div>
-        <div class="image">
-            <img src="{{ asset('image/jeux-4.jpg') }}" alt="Distraction">
-        </div>
-    </div>
-
-    <div class="carre2">
-        <div class="details">
-            <div class="titre">EDUCATION</div>
-            <p>
-                Explorez les opportunités éducatives passionnantes qui enrichissent notre communauté ce moi-ci. <br>
-                Des conférences inspirantes aux ateliers interactifs, notre calandrier d'évènements éducatifs propose
-                une <br>
-                multitude d'occasions pour apprendre, partager et grandir ensemble. <br>
-
-                <a href="evenement.php">voir les évènements associés</a>
-            </p>
-        </div>
-        <div class="image">
-            <img src="{{ asset('image/Difference-Between-School-and-Education_Education.jpg') }}" alt="Education">
-        </div>
-    </div>
-    <footer>
-
+    <footer class="bg-light text-center py-3">
+        <p>&copy; 2024 Votre Entreprise. Tous droits réservés.</p>
     </footer>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"> --}}
-        < /body> <
-        /html>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+</body>
+
+</html>
