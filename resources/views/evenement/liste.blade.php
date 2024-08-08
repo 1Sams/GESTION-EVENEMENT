@@ -10,6 +10,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
 
+        body{
+            background-image: url(https://www.shutterstock.com/shutterstock/photos/2458476215/display_1500/stock-photo-black-curvy-pattern-surface-d-illustration-abstract-futuristic-background-minimalist-geometric-2458476215.jpg) ;
+        }
+
         .btn-back {
             position: fixed;
             top: 15px;

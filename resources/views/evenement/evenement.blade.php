@@ -192,7 +192,7 @@
                             <p class="card-text"><strong>Description:</strong> {{ $evenement->Description }}</p>
                             <p class="card-text"><strong>Date:</strong> {{ $evenement->date }}</p>
                             <p class="card-text"><strong>Lieu:</strong> {{ $evenement->lieu }}</p>
-                            <p class="card-text"><strong>Heure:</strong> {{ $evenement->heure }}</p>
+                            <p class="card-text"><strong>Des heures:</strong> {{ $evenement->heure }}</p>
                         </div>
                         @if($evenement->image)
                         <img src="{{ asset('uploads/evenements/'.$evenement->image) }}" class="event-image" alt="{{ $evenement->nom }}">

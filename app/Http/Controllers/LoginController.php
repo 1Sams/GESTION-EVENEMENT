@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -17,9 +18,25 @@ class LoginController extends Controller
 
     public function dologin(LoginRequest $request)
     {
+
+
+
         $credentials = $request->validated();
 
-        dd(Auth::attempt($credentials));
+
+        // $credentials = $request->only('email', 'password');
+
+       dd((Auth::attempt($credentials)));
+
+    // Tentative de connexion avec les identifiants
+    if (Auth::attempt($credentials)) {
+        // Authentification réussie, redirection de l'utilisateur vers le tableau de bord
+
+        return view('categories')->with('success', 'Vous êtes connecté avec succès!');
+    } else {
+        // Authentification échouée, retour à la page de connexion avec un message d'erreur
+        return redirect()->back()->with('error', 'Identifiants incorrects. Veuillez réessayer.');
+    }
 
 
 
@@ -39,25 +56,9 @@ class LoginController extends Controller
 
 
 
-        //  $credentials = $request->validated();
 
 
-        //  if(Auth::attempt($credentials)){
-        //     $request->session()->regenerate();
-        //     return redirect()->intended(route('acceuil'));
-        //  }
-        //  return to_route('auth.login')->withErrors([
-        //     'email' =>"Email invalide"
-        //  ])->onlyInput('email');
-
-
-        //  $credentials = $request->only('email', 'password');
-        //         if($credentials){
-        //             return redirect('/categories');
-        //         }
-
-
-         return view('categories');
+        //  return view('categories');
     }
 
 
